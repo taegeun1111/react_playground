@@ -1,13 +1,13 @@
 // let a: string = "hello";
 // a = 1234;
 
-const a: number = 5;
-const b: string = "";
-const c: boolean = true;
-const d: undefined = undefined;
-const e: null = null;
-const f: symbol = Symbol.for("abc");
-const g: any = 123;
+// const a: number = 5;
+// const b: string = "";
+// const c: boolean = true;
+// const d: undefined = undefined;
+// const e: null = null;
+// const f: symbol = Symbol.for("abc");
+// const g: any = 123;
 
 /*
   1. 함수 타입핑
@@ -48,15 +48,28 @@ const g: any = 123;
     - as
     - !
 */
-let aa = 123;
-aa = "hello" as unknown as number;
+// let aa = 123;
+// aa = "hello" as unknown as number;
 
-const head: Element | null = document.querySelector("#head");
+// const head: Element | null = document.querySelector("#head");
 // if (head instanceof Element) {
 //   head.innerHTML = "hello world";
 // }
-if (head) {
-  head.innerHTML = "hello world";
-}
+// if (head) {
+  // head.innerHTML = "hello world";
+// }
 
 // const head = document.querySelector("#head")!;
+
+// type World = "world" | "hell";
+// type Greeting = `hello ${World}`;
+
+// const c: Greeting = "hello hell";
+
+// let tuple: [string, number] = ["1", 1];
+// tuple[2] = 3;  // error
+// tuple.push(3);
+
+/*
+  4. enum
+*/
