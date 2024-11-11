@@ -56,7 +56,7 @@
 //   head.innerHTML = "hello world";
 // }
 // if (head) {
-  // head.innerHTML = "hello world";
+// head.innerHTML = "hello world";
 // }
 
 // const head = document.querySelector("#head")!;
@@ -71,5 +71,77 @@
 // tuple.push(3);
 
 /*
-  4. enum
+  4. enum, typeof, keyof
 */
+
+// const enum EDirection {
+//   Up = 3,
+//   Down = 4,
+//   Left = 5,
+//   Right = 6,
+// }
+
+// const ODirection = {
+//   Up: 3,
+//   Down: 4,
+//   Left: 5,
+//   Right: 6,
+// } as const;
+// type ODirection = (typeof ODirection)[keyof typeof ODirection];
+
+// const a = EDirection.Left; // 4
+// const b = ODirection.Left; // 5
+
+// 변수들을 하나의 그룹으로 묶고 싶을 때
+
+// const obj = { a: "123", b: "hello", c: "world" } as const;
+// type ObjType = typeof obj;
+// type key = keyof typeof obj; // type key = "a" | "b" | "c"
+// type key = typeof obj[keyof typeof obj]; // type key = "123" | "hello" | "world"
+
+/*
+  5. type. interface
+*/
+
+// type A = { a: string };
+// const a: A = { a: "3" };
+
+// interface B {a: string;}
+// const b: B = {a: "3"};
+
+//간단하게 사용하고 싶으면 type, interface는 자바의 객체지향 기능들을 지원한다.
+
+/*
+  6. union, intersection
+*/
+
+// function add(x: string | number, y: string | number): string | number {
+//   if (typeof x === "string" && typeof y === "string") {
+//     return x + y;
+//   } else if (typeof x === "number" && typeof y === "number") {
+//     return x + y;
+//   }
+
+//   throw new Error("Parameters must be both strings or both numbers");
+// }
+
+// add(1, "2");
+
+// 모든 속성이 다 있어야 한다.
+// type A = { hello: "world" } & { zero: "cho" };
+// const a: A = { hello: "world", zero: "cho" };
+
+// 하나만 있어도 된다.
+// type B = { hello: "world" } | { zero: "cho" };
+// const b: B = { hello: "world", zero: "cho" };
+
+// type Animal = { breath: true };
+// type Mammal = Animal & { breed: true };
+// type Human = Mammal & { think: true };
+
+// 상속의 개념
+// const hongGilDong: Human = { breath: true, breed: true, think: true };
+
+type A = string | number;
+type B = string;
+type C = string & number
