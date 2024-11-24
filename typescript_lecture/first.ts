@@ -142,6 +142,42 @@
 // 상속의 개념
 // const hongGilDong: Human = { breath: true, breed: true, think: true };
 
-type A = string | number;
-type B = string;
-type C = string & number
+// type A = string | number;
+// type B = string;
+// type C = string & number;
+
+// function CK(): void {
+//   return undefined;
+// }
+
+// const b = CK();
+
+// function forEach(arr: number[], callback: (el: number) => undefined): void;
+
+interface A {
+  talk: () => void;
+}
+const a: A = {
+  talk() {
+    return 3;
+  },
+};
+
+// const b: void
+// const ab = a.talk();
+
+// const b: number
+// const b = a.talk() as unknown as number;
+
+//any은 타입 선언을 포기하기 때문에 더이상 오류가 발생하지 않음
+const b: any = a.talk();
+b.method();
+
+//unknown을 선언하면 타입을 직접 지정해줘야 한다. 지금 당장 타입을 모를 때 사용
+const c: unknown = a.talk();
+(c as A).talk();
+
+try {
+} catch (error) {
+  (error as Error).message;
+}
