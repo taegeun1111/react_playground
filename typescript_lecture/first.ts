@@ -154,14 +154,14 @@
 
 // function forEach(arr: number[], callback: (el: number) => undefined): void;
 
-interface A {
-  talk: () => void;
-}
-const a: A = {
-  talk() {
-    return 3;
-  },
-};
+// interface A {
+//   talk: () => void;
+// }
+// const a: A = {
+//   talk() {
+//     return 3;
+//   },
+// };
 
 // const b: void
 // const ab = a.talk();
@@ -169,15 +169,63 @@ const a: A = {
 // const b: number
 // const b = a.talk() as unknown as number;
 
+/*
+  7. any, unknown
+*/
+
 //any은 타입 선언을 포기하기 때문에 더이상 오류가 발생하지 않음
-const b: any = a.talk();
-b.method();
+// const b: any = a.talk();
+// b.method();
 
 //unknown을 선언하면 타입을 직접 지정해줘야 한다. 지금 당장 타입을 모를 때 사용
-const c: unknown = a.talk();
-(c as A).talk();
+// const c: unknown = a.talk();
+// (c as A).talk();
 
-try {
-} catch (error) {
-  (error as Error).message;
+// try {
+// } catch (error) {
+//   (error as Error).message;
+// }
+
+/*
+  8. 타입가드
+*/
+
+function numOrStr(a: number | string) {
+  if (typeof a === "string") {
+    return a.split(",");
+  }
+  if (typeof a === "number") {
+    a.toFixed(1);
+  }
+}
+numOrStr("123");
+numOrStr(1);
+
+function numOrNumArray(a: number | number[]) {
+  // number[]
+  if (Array.isArray(a)) {
+    a.concat(4);
+    // number
+  } else {
+    a.toFixed(3);
+  }
+}
+
+numOrNumArray(123);
+numOrNumArray([1, 2, 3]);
+
+class A {
+  aaa() {}
+}
+
+class B {
+  bbb() {}
+}
+
+function aOrB(param: A | B) {
+  if (param instanceof A) {
+    param.aaa();
+  } else {
+    param.bbb();
+  }
 }
