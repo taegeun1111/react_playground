@@ -229,3 +229,17 @@ function aOrB(param: A | B) {
     param.bbb();
   }
 }
+
+type bB = {type: 'b', bbb : string};
+type cC = {type: 'c', ccc : string};
+type dD = {type: 'd', ddd : string};
+
+function typeCheck (param: bB|cC|dD){
+  if('bbb' in param){
+    param.type;
+  }else if('ccc' in param){
+    param.type
+  }else{
+    param.type
+  }
+}
