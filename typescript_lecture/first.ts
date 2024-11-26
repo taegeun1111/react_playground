@@ -190,56 +190,86 @@
   8. 타입가드
 */
 
-function numOrStr(a: number | string) {
-  if (typeof a === "string") {
-    return a.split(",");
-  }
-  if (typeof a === "number") {
-    a.toFixed(1);
-  }
-}
-numOrStr("123");
-numOrStr(1);
+// function numOrStr(a: number | string) {
+//   if (typeof a === "string") {
+//     return a.split(",");
+//   }
+//   if (typeof a === "number") {
+//     a.toFixed(1);
+//   }
+// }
+// numOrStr("123");
+// numOrStr(1);
 
-function numOrNumArray(a: number | number[]) {
-  // number[]
-  if (Array.isArray(a)) {
-    a.concat(4);
-    // number
-  } else {
-    a.toFixed(3);
-  }
-}
+// function numOrNumArray(a: number | number[]) {
+//   // number[]
+//   if (Array.isArray(a)) {
+//     a.concat(4);
+//     // number
+//   } else {
+//     a.toFixed(3);
+//   }
+// }
 
-numOrNumArray(123);
-numOrNumArray([1, 2, 3]);
+// numOrNumArray(123);
+// numOrNumArray([1, 2, 3]);
 
-class A {
-  aaa() {}
-}
+// class A {
+//   aaa() {}
+// }
 
-class B {
-  bbb() {}
-}
+// class B {
+//   bbb() {}
+// }
 
-function aOrB(param: A | B) {
-  if (param instanceof A) {
-    param.aaa();
-  } else {
-    param.bbb();
-  }
-}
+// function aOrB(param: A | B) {
+//   if (param instanceof A) {
+//     param.aaa();
+//   } else {
+//     param.bbb();
+//   }
+// }
 
-type bB = {type: 'b', bbb : string};
-type cC = {type: 'c', ccc : string};
-type dD = {type: 'd', ddd : string};
+// type bB = {type: 'b', bbb : string};
+// type cC = {type: 'c', ccc : string};
+// type dD = {type: 'd', ddd : string};
 
-function typeCheck (param: bB|cC|dD){
-  if('bbb' in param){
-    param.type;
-  }else if('ccc' in param){
-    param.type
-  }else{
-    param.type
-  }
-}
+// function typeCheck (param: bB|cC|dD){
+//   if('bbb' in param){
+//     param.type;
+//   }else if('ccc' in param){
+//     param.type
+//   }else{
+//     param.type
+//   }
+// }
+
+/*
+  9. is : 타입을 구분해주는 커스텀 함수
+*/
+
+// interface Cat {
+//   meow: number;
+// }
+// interface Dog {
+//   bow: number;
+// }
+
+// function catOrDog(a: Cat | Dog): a is Dog {
+//   if ((a as Cat).meow) return false;
+//   return true;
+// }
+
+// const cat: Cat | Dog = { meow: 3 };
+
+// if (catOrDog(cat)) {
+//   console.log(cat.meow);
+// }
+
+// if ("meow" in cat) {
+//   console.log(cat.meow);
+// }
+
+/*
+  10: readOnly
+ */
