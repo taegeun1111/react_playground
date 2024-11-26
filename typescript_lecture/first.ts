@@ -271,5 +271,89 @@
 // }
 
 /*
-  10: readOnly
+  10. readOnly
  */
+
+// interface A {
+//   readonly a: string;
+//   b: string;
+// }
+
+// const aaaa: A = { a: "hello", b: "world" };
+// aaaa.a = "123"; // 변경 불가
+
+// type B = { [key: string]: string };
+// const b: B = { "1": "123" };
+
+/*
+  11. 클래스의 새로운 기능들
+*/
+
+// class A {
+//   a: string;
+//   b: number;
+
+//   constructor(a: string, b: number = 123) {
+//     (this.a = "123"), (this.b = 123);
+//   }
+
+//   method() {}
+// }
+
+// const a = new A("123");
+
+// type Aa = A;
+
+/*
+  12. 옵셔널, 제네릭
+*/
+
+// function add(x:string |number, y:string | number) : string |number {return x+y}
+
+// function add(x: string, y: string): string {
+//   return x + y;
+// }
+
+// function add(x: number, y: number): number {
+//   return x + y;
+// }
+
+// 함수를 두 번 선언했기 때문에 에러가 발생
+
+function add<T extends string | number>(x: T, y: T): T {
+  return x + y;
+}
+
+add(1, 2);
+
+// function extendsSample<T extends { a: string }>(x: T) {
+//   return T;
+// }
+
+// extendsSample({ a: "1" });
+
+function extendsSample2<T extends any[]>(x: T) {
+  return T;
+}
+
+extendsSample2(["1", "2", 3]);
+
+// function extendsSample<T extends (...args: any) => any>(x: T) {
+//   return T;
+// }
+
+// extendsSample((x)=>console.log(x));
+
+function extendsSample<T extends abstract new (...args: any) => any>(x: T) {
+  return T;
+}
+
+class A {}
+extendsSample(A);
+
+
+// 제네릭 타입 제한 방법
+// <T extends {...}>
+// <T extends any[]>
+// <T extends (...args: any) => any>
+// <T extends abstract new (...args: any) => any>
