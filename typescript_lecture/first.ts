@@ -332,24 +332,24 @@ add(1, 2);
 
 // extendsSample({ a: "1" });
 
-function extendsSample2<T extends any[]>(x: T) {
-  return T;
-}
-
-extendsSample2(["1", "2", 3]);
-
-// function extendsSample<T extends (...args: any) => any>(x: T) {
+// function extendsSample2<T extends any[]>(x: T) {
 //   return T;
 // }
 
-// extendsSample((x)=>console.log(x));
+// extendsSample2(["1", "2", 3]);
 
-function extendsSample<T extends abstract new (...args: any) => any>(x: T) {
-  return T;
-}
+// function extendsSample3<T extends (...args: any) => any>(x: T) {
+//   return T;
+// }
 
-class A {}
-extendsSample(A);
+// extendsSample3((x)=>console.log(x));
+
+// function extendsSample4<T extends abstract new (...args: any) => any>(x: T) {
+//   return T;
+// }
+
+// class A {}
+// extendsSample4(A);
 
 
 // 제네릭 타입 제한 방법
