@@ -353,7 +353,7 @@ add(1, 2);
 
 
 // 제네릭 타입 제한 방법
-// <T extends {...}>
-// <T extends any[]>
-// <T extends (...args: any) => any>
-// <T extends abstract new (...args: any) => any>
+<T extends {...}>
+<T extends any[]>
+<T extends (...args: any) => any>
+<T extends abstract new (...args: any) => any>
