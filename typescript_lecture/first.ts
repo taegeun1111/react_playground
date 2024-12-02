@@ -351,9 +351,37 @@ add(1, 2);
 // class A {}
 // extendsSample4(A);
 
-
 // 제네릭 타입 제한 방법
-<T extends {...}>
-<T extends any[]>
-<T extends (...args: any) => any>
-<T extends abstract new (...args: any) => any>
+// <T extends {...}>
+// <T extends any[]>
+// <T extends (...args: any) => any>
+// <T extends abstract new (...args: any) => any>
+
+interface Array<T> {
+  forEach(
+    callbackfn: (value: T, index: number, array: T[]) => void,
+    thisArg?: any
+  ): void;
+  map<U>(
+    callbackfn: (value: T, index: number, array: T[]) => U,
+    thisArg?: any
+  ): U[];
+}
+
+const a: Array<number> = [1, 2, 3];
+a.forEach((value) => {
+  console.log(value);
+});
+
+[1, 2, 3].forEach((item) => {
+  console.log(item);
+});
+
+["1", "2", "3"].forEach((item) => {
+  console.log(item);
+});
+
+const updatedMap = [1,2,3].map((list)=>{
+  return
+  
+})
