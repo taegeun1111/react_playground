@@ -366,6 +366,14 @@ interface Array<T> {
     callbackfn: (value: T, index: number, array: T[]) => U,
     thisArg?: any
   ): U[];
+  filter<S extends T>(
+    predicate: (value: T, index: number, array: T[]) => value is S,
+    thisArg?: any
+  ): S[];
+  filter(
+    predicate: (value: T, index: number, array: T[]) => unknown,
+    thisArg?: any
+  ): T[];
 }
 
 const a: Array<number> = [1, 2, 3];
@@ -381,7 +389,6 @@ a.forEach((value) => {
   console.log(item);
 });
 
-const updatedMap = [1,2,3].map((list)=>{
-  return
-  
-})
+const filtered = ["1", 2, "3", 4, "5"].filter(
+  (value) => typeof value === "number"
+);
