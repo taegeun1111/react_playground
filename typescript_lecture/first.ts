@@ -320,9 +320,9 @@
 
 // 함수를 두 번 선언했기 때문에 에러가 발생
 
-function add<T extends string | number>(x: T, y: T): T {
-  return x + y;
-}
+// function add<T extends string | number>(x: T, y: T): T {
+//   return x + y;
+// }
 
 add(1, 2);
 
@@ -357,6 +357,10 @@ add(1, 2);
 // <T extends (...args: any) => any>
 // <T extends abstract new (...args: any) => any>
 
+/*
+  13. 함수 분석
+*/
+
 interface Array<T> {
   forEach(
     callbackfn: (value: T, index: number, array: T[]) => void,
@@ -376,7 +380,7 @@ interface Array<T> {
   ): T[];
 }
 
-const a: Array<number> = [1, 2, 3];
+// const a: Array<number> = [1, 2, 3];
 a.forEach((value) => {
   console.log(value);
 });
@@ -392,3 +396,17 @@ a.forEach((value) => {
 const filtered = ["1", 2, "3", 4, "5"].filter(
   (value) => typeof value === "number"
 );
+
+interface Arr<T> {
+  forEach(callback: (item: T, index: number) => void): void;
+}
+
+const a: Arr<number> = [1, 2, 3];
+a.forEach((list, index) => {
+  console.log(list);
+});
+
+const b: Arr<string> = ["1", "2", "3"];
+b.forEach((list) => {
+  console.log(list);
+});
