@@ -400,6 +400,7 @@ const filtered = ["1", 2, "3", 4, "5"].filter(
 interface Arr<T> {
   forEach(callback: (item: T, index: number) => void): void;
   map<S>(callback: (v: T, index: number) => S): S[];
+  filter<S extends T>(callback: (v: T) => v is S): S[];
 }
 
 const a: Arr<number> = [1, 2, 3];
@@ -412,8 +413,10 @@ b.forEach((list) => {
   console.log(list);
 });
 
-const mapA: Arr<number> = [1, 2, 3];
+const mapA: Arr<number | string> = [1, "2", 3];
 
 const ca = mapA.map((value) => value + 1); // [2, 3, 4]
 const cb = mapA.map((value) => value.toString()); // ['2', '3', '4']
 const cc = mapA.map((value, index) => value % 2 === 0); // [false, true, false]
+
+const da = mapA.filter((v): v is string => typeof v === "string");
