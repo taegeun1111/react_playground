@@ -415,8 +415,23 @@ b.forEach((list) => {
 
 const mapA: Arr<number | string> = [1, "2", 3];
 
-const ca = mapA.map((value) => value + 1); // [2, 3, 4]
+const ca = mapA.map((value) => Number(value) + 1); // [2, 3, 4]
 const cb = mapA.map((value) => value.toString()); // ['2', '3', '4']
-const cc = mapA.map((value, index) => value % 2 === 0); // [false, true, false]
+const cc = mapA.map((value, index) => Number(value) % 2 === 0); // [false, true, false]
 
 const da = mapA.filter((v): v is string => typeof v === "string");
+const predicate = (v: string | number): v is number => typeof v === "number";
+const db = mapA.filter(predicate);
+
+/*
+  14. 공변성, 반공변성
+*/
+
+function formattedNumber(x: string | number): number {
+  return +x;
+}
+
+formattedNumber("1");
+
+type B = (x: string) => number | string;
+const testFormattedNumber: B = formattedNumber;
