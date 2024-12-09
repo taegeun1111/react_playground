@@ -437,7 +437,7 @@ add(1, 2);
 // const testFormattedNumber: B = formattedNumber;
 
 /*
-  15. Partial
+  15. Partial, Pick, Omit
 */
 
 interface Profile {
@@ -447,7 +447,7 @@ interface Profile {
 }
 
 // value의 타입 얻어오는 방법
-type Name = Profile['name'];
+type Name = Profile["name"];
 
 type P<T> = {
   [key in keyof T]?: T[key];
@@ -466,7 +466,7 @@ const oneGirl: P<Profile> = {
   name: "철수",
   age: "20",
 };
- 
+
 // interface Profile {
 //   name?: string;
 //   age?: string;
@@ -477,3 +477,35 @@ const twoGirl: Partial<Profile> = {
   name: "철수",
   age: "20",
 };
+
+const threeMan: Pick<Profile, "name" | "age"> = {
+  name: "철수",
+  age: "20",
+};
+
+const fourMan: Omit<Profile, "married"> = {
+  name: "철수",
+  age: "20",
+};
+
+type wer<T, S extends keyof T> = {
+  [key in S]: T[key];
+};
+
+const threeGirl: wer<Profile, "name" | "age"> = {
+  name: "철수",
+  age: "20",
+};
+
+interface Whole {
+  bite: boolean
+}
+
+interface Total extends Whole {
+  meow: boolean
+}
+
+const totalData: Total = {
+  bite: true,
+  meow: false
+}
