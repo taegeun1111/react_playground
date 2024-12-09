@@ -361,77 +361,119 @@ add(1, 2);
   13. 함수 분석
 */
 
-interface Array<T> {
-  forEach(
-    callbackfn: (value: T, index: number, array: T[]) => void,
-    thisArg?: any
-  ): void;
-  map<U>(
-    callbackfn: (value: T, index: number, array: T[]) => U,
-    thisArg?: any
-  ): U[];
-  filter<S extends T>(
-    predicate: (value: T, index: number, array: T[]) => value is S,
-    thisArg?: any
-  ): S[];
-  filter(
-    predicate: (value: T, index: number, array: T[]) => unknown,
-    thisArg?: any
-  ): T[];
-}
+// interface Array<T> {
+//   forEach(
+//     callbackfn: (value: T, index: number, array: T[]) => void,
+//     thisArg?: any
+//   ): void;
+//   map<U>(
+//     callbackfn: (value: T, index: number, array: T[]) => U,
+//     thisArg?: any
+//   ): U[];
+//   filter<S extends T>(
+//     predicate: (value: T, index: number, array: T[]) => value is S,
+//     thisArg?: any
+//   ): S[];
+//   filter(
+//     predicate: (value: T, index: number, array: T[]) => unknown,
+//     thisArg?: any
+//   ): T[];
+// }
 
 // const a: Array<number> = [1, 2, 3];
-a.forEach((value) => {
-  console.log(value);
-});
+// a.forEach((value) => {
+//   console.log(value);
+// });
 
-[1, 2, 3].forEach((item) => {
-  console.log(item);
-});
+// [1, 2, 3].forEach((item) => {
+//   console.log(item);
+// });
 
-["1", "2", "3"].forEach((item) => {
-  console.log(item);
-});
+// ["1", "2", "3"].forEach((item) => {
+//   console.log(item);
+// });
 
-const filtered = ["1", 2, "3", 4, "5"].filter(
-  (value) => typeof value === "number"
-);
+// const filtered = ["1", 2, "3", 4, "5"].filter(
+//   (value) => typeof value === "number"
+// );
 
-interface Arr<T> {
-  forEach(callback: (item: T, index: number) => void): void;
-  map<S>(callback: (v: T, index: number) => S): S[];
-  filter<S extends T>(callback: (v: T) => v is S): S[];
-}
+// interface Arr<T> {
+//   forEach(callback: (item: T, index: number) => void): void;
+//   map<S>(callback: (v: T, index: number) => S): S[];
+//   filter<S extends T>(callback: (v: T) => v is S): S[];
+// }
 
-const a: Arr<number> = [1, 2, 3];
-a.forEach((list, index) => {
-  console.log(list);
-});
+// const a: Arr<number> = [1, 2, 3];
+// a.forEach((list, index) => {
+//   console.log(list);
+// });
 
-const b: Arr<string> = ["1", "2", "3"];
-b.forEach((list) => {
-  console.log(list);
-});
+// const b: Arr<string> = ["1", "2", "3"];
+// b.forEach((list) => {
+//   console.log(list);
+// });
 
-const mapA: Arr<number | string> = [1, "2", 3];
+// const mapA: Arr<number | string> = [1, "2", 3];
 
-const ca = mapA.map((value) => Number(value) + 1); // [2, 3, 4]
-const cb = mapA.map((value) => value.toString()); // ['2', '3', '4']
-const cc = mapA.map((value, index) => Number(value) % 2 === 0); // [false, true, false]
+// const ca = mapA.map((value) => Number(value) + 1); // [2, 3, 4]
+// const cb = mapA.map((value) => value.toString()); // ['2', '3', '4']
+// const cc = mapA.map((value, index) => Number(value) % 2 === 0); // [false, true, false]
 
-const da = mapA.filter((v): v is string => typeof v === "string");
-const predicate = (v: string | number): v is number => typeof v === "number";
-const db = mapA.filter(predicate);
+// const da = mapA.filter((v): v is string => typeof v === "string");
+// const predicate = (v: string | number): v is number => typeof v === "number";
+// const db = mapA.filter(predicate);
 
 /*
   14. 공변성, 반공변성
 */
 
-function formattedNumber(x: string | number): number {
-  return +x;
+// function formattedNumber(x: string | number): number {
+//   return +x;
+// }
+
+// formattedNumber("1");
+
+// type B = (x: string) => number | string;
+// const testFormattedNumber: B = formattedNumber;
+
+/*
+  15. Partial
+*/
+
+interface Profile {
+  name: string;
+  age: string;
+  married: boolean;
 }
 
-formattedNumber("1");
+// value의 타입 얻어오는 방법
+type Name = Profile['name'];
 
-type B = (x: string) => number | string;
-const testFormattedNumber: B = formattedNumber;
+type P<T> = {
+  [key in keyof T]?: T[key];
+};
+
+// [key in keyof T] : T에 있는 키값들만 사용할 수 있다.
+// T[key]: value들은 T의 value를 사용할 수 있다.
+
+const oneMan: Profile = {
+  name: "철수",
+  age: "20",
+  married: true,
+};
+
+const oneGirl: P<Profile> = {
+  name: "철수",
+  age: "20",
+};
+ 
+// interface Profile {
+//   name?: string;
+//   age?: string;
+//   married?: boolean;
+// }
+
+const twoGirl: Partial<Profile> = {
+  name: "철수",
+  age: "20",
+};

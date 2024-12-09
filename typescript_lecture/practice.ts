@@ -22,7 +22,16 @@ const ODircetion = {
 
 type ODirection = (typeof ODircetion)[keyof typeof ODircetion];
 
+const test1: ODirection = 1;
+const test2: EDirection = ODircetion.LEFT;
 
+const typeTest = {
+  a: 1,
+  b: 2,
+  c: 3,
+} as const;
 
-const test1:ODirection = 1
-const test2:EDirection = ODircetion.LEFT
+type typeData = keyof typeof typeTest;
+type test44 = (typeof typeTest)[keyof typeof typeTest];
+
+type rrB = { hello: "world" } | { zero: "cho" };
