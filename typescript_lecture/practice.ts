@@ -35,3 +35,16 @@ type typeData = keyof typeof typeTest;
 type test44 = (typeof typeTest)[keyof typeof typeTest];
 
 type rrB = { hello: "world" } | { zero: "cho" };
+
+// type Keys = "A" | "B" | "C";
+type StringArray<T> = {
+  [Keys in keyof T]: T[Keys];
+};
+
+interface TestT {
+  D: number;
+}
+
+const test: StringArray<TestT> = {
+  D: 3,
+};
