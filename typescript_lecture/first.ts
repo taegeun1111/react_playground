@@ -454,7 +454,7 @@ type P<T> = {
 };
 
 // [key in keyof T] : T에 있는 키값들만 사용할 수 있다.
-// T[key]: value들은 T의 value를 사용할 수 있다.
+// T[key]: valued들은 T의 value를 사용할 수 있다.
 
 const oneMan: Profile = {
   name: "철수",
